@@ -71,7 +71,7 @@ app.post("/", (req, res) => {
       author: body.author,
     });
 
-    res.send("ok");
+    res.send(quotes[quotes.length - 1].quote);
   });
 });
 
