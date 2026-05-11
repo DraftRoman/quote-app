@@ -7,7 +7,7 @@ const quoteInput = document.getElementById("quote-input");
 const authorInput = document.getElementById("author-input");
 const messageElement = document.getElementById("message");
 
-const API_URL = "http://fdklrvx2s82abjks8duhd0uf.178.105.39.91.sslip.io/";
+const API_URL = "http://roman-quote-app-backend.178.105.39.91.sslip.io";
 
 async function loadQuote() {
   try {
@@ -32,7 +32,7 @@ async function addQuote(event) {
   const author = authorInput.value;
 
   try {
-    const response = await fetch("/quotes", {
+    const response = await fetch("http://roman-quote-app-backend.178.105.39.91.sslip.io/", {
       method: "POST",
 
       headers: {
