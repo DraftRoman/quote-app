@@ -9,7 +9,7 @@ const messageElement = document.getElementById("message");
 
 async function loadQuote() {
   try {
-    const response = await fetch("http://localhost:3000");
+    const response = await fetch("/");
 
     const data = await response.json();
 
@@ -30,7 +30,7 @@ async function addQuote(event) {
   const author = authorInput.value;
 
   try {
-    const response = await fetch("http://localhost:3000", {
+    const response = await fetch("/quotes", {
       method: "POST",
 
       headers: {
