@@ -7,9 +7,11 @@ const quoteInput = document.getElementById("quote-input");
 const authorInput = document.getElementById("author-input");
 const messageElement = document.getElementById("message");
 
+const API_URL = "http://fdklrvx2s82abjks8duhd0uf.178.105.39.91.sslip.io/";
+
 async function loadQuote() {
   try {
-    const response = await fetch("/");
+    const response = await fetch(API_URL);
 
     const data = await response.json();
 
