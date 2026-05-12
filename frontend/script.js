@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+const API_URL = process.env.API_URL || "http://localhost:3000";
+
 const quoteElement = document.getElementById("quote");
 const authorElement = document.getElementById("author");
 
@@ -7,7 +12,6 @@ const quoteInput = document.getElementById("quote-input");
 const authorInput = document.getElementById("author-input");
 const messageElement = document.getElementById("message");
 
-const API_URL = "http://roman-quote-app-backend.178.105.39.91.sslip.io";
 
 async function loadQuote() {
   try {
@@ -32,7 +36,7 @@ async function addQuote(event) {
   const author = authorInput.value;
 
   try {
-    const response = await fetch("http://roman-quote-app-backend.178.105.39.91.sslip.io/", {
+    const response = await fetch(API_URL, {
       method: "POST",
 
       headers: {
