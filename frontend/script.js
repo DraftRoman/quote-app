@@ -1,7 +1,4 @@
-import dotenv from "dotenv";
-
-dotenv.config();
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const quoteElement = document.getElementById("quote");
 const authorElement = document.getElementById("author");
@@ -16,7 +13,6 @@ const messageElement = document.getElementById("message");
 async function loadQuote() {
   try {
     const response = await fetch(API_URL);
-
     const data = await response.json();
 
     quoteElement.textContent = `"${data.quote}"`;

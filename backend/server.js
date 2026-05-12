@@ -1,11 +1,14 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";  
 
+dotenv.config();
 const app = express();
 
 app.use(cors({
-  origin: "*"
+   origin: process.env.FRONTEND_URL
 }));
+app.use(express.json());
 
 
 const port = process.env.PORT || 3000;
@@ -30,52 +33,23 @@ function randomQuote() {
 app.get("/", (req, res) => {
   const quote = randomQuote();
 
-  res.json(quote);
+  res.json(quote);;
 });
 
 app.post("/", (req, res) => {
-  const bodyBytes = [];
+  const { quote, author } = req.body;
 
-  req.on("data", chunk => bodyBytes.push(...chunk));
+  if (!quote || !author) {
+    return res.status(400).send(
+      "Expected quote and author"
+    );
+  }
 
-  req.on("end", () => {
-    const bodyString = String.fromCharCode(...bodyBytes);
-
-    let body;
-
-    try {
-      body = JSON.parse(bodyString);
-    } catch (error) {
-      console.error(`Failed to parse body ${bodyString} as JSON: ${error}`);
-
-      res.status(400).send("Expected body to be JSON.");
-
-      return;
-    }
-
-    if (
-      typeof body != "object" ||
-      !("quote" in body) ||
-      !("author" in body)
-    ) {
-      console.error(
-        `Failed to extract quote and author from post body: ${bodyString}`
-      );
-
-      res.status(400).send(
-        "Expected body to be a JSON object containing keys quote and author."
-      );
-
-      return;
-    }
-
-    quotes.push({
-      quote: body.quote,
-      author: body.author,
-    });
-
-    res.send(quotes[quotes.length - 1].quote);
+  quotes.push({
+    quote,
+    author,
   });
+  res.send(`Added quote: ${quote}`);
 });
 
 app.listen(port, () => {
