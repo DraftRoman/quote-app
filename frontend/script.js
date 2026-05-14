@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_BACKEND_API;
+const API_URL = BACKEND_API || "http://localhost:3000";
 
 const quoteElement = document.getElementById("quote");
 const authorElement = document.getElementById("author");
