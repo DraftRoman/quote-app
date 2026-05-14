@@ -1,3 +1,4 @@
+import BACKEND_API from "./config.js";
 const API_URL = BACKEND_API || "http://localhost:3000";
 
 const quoteElement = document.getElementById("quote");
