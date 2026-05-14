@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_BACKEND_API;
 
 const quoteElement = document.getElementById("quote");
 const authorElement = document.getElementById("author");
@@ -27,7 +27,11 @@ async function loadQuote() {
 
 async function addQuote(event) {
   event.preventDefault();
-
+  if (!quoteInput.value || !authorInput.value) {
+    messageElement.textContent =
+      "Please provide both quote and author";
+    return;
+  }
   const quote = quoteInput.value;
   const author = authorInput.value;
 

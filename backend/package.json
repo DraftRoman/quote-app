@@ -1,7 +1,7 @@
 {
   "name": "quote-app-backend",
   "main": "server.js",
-    "scripts": {
+  "scripts": {
     "start": "node server.js"
   },
   "version": "1.0.0",
